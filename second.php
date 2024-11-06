@@ -33,11 +33,12 @@
     </script>
 </body>
 <?php 
-$dns = "mysql:host=127.0.0.1;dbname=register";
-$user = "root";
-$password = "root";
-$pdo = new PDO($dns, $user, $password);
-$error_masage = 'Ism yoki passwordni hato kiritdiz';
+    require('DB.php');
+    $db = new DB;
+    $pdo = $db->pdo;
+
+    $error_masage = 'Ism yoki passwordni hato kiritdiz';
+
 if ($_SERVER['REQUEST_METHOD']==='POST'){
 
     $user_name = $_POST['user_name1'];
@@ -46,8 +47,8 @@ if ($_SERVER['REQUEST_METHOD']==='POST'){
         $stmt = $pdo->prepare("Select *from frist_window Where user_name =:user_name and user_password = :user_password");
         $stmt->execute(['user_name'=>$user_name,'user_password'=>$user_password]);
         if ($stmt->rowCount()>0){
-            header("Location: https://www.youtube.com/watch?v=PHwjxZwB-8Y ");
-            exit();
+            header("Location: https://www.youtube.com/live/LiehakKraU0?si=O8dHOb0to61DHD4G");
+            return;
         }else{
             $error_masage = "Foydalanuvchi topilmadi yoki password xato";
         }

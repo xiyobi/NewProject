@@ -47,13 +47,10 @@
 
 
     <?php
-        $dns = "mysql:host=127.0.0.1;dbname=register";
-        $user = "root";
-        $user_password = "root";
-        
-        $pdo = new PDO($dns,$user,$user_password);
-        
-        
+        require('DB.php');
+        $db = new DB;
+        $pdo = $db->pdo;
+
         if(isset($_POST['email_adrres']) and isset($_POST['user_password']) and isset($_POST['user_name'])){
             $user_name = $_POST['user_name'];
             $email_adrres = $_POST['email_adrres'];
@@ -65,10 +62,11 @@
             $stmt->bindParam(':email_adrres',$email_adrres);
             $stmt->bindParam(':user_password',$user_password);
             $stmt->execute();
-            header("Location: /");
-            exit(); 
+            header("Location: registr.php");
+            return; 
         }
         $RegisterPage = $pdo->query("Select *from frist_window")->fetchAll();
+        
         $index = 1;
         
         ?>
