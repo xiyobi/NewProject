@@ -34,12 +34,11 @@
 </body>
 <?php 
     require('DB.php');
-    $db = new DB;
+    $db = new DB();
     $pdo = $db->pdo;
 
-    $error_masage = 'Ism yoki passwordni hato kiritdiz';
 
-if ($_SERVER['REQUEST_METHOD']==='POST'){
+if (($_SERVER['REQUEST_METHOD']==='POST')){
 
     $user_name = $_POST['user_name1'];
     $user_password = $_POST['user_password1'];
